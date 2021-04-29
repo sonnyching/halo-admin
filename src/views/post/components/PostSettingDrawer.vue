@@ -123,7 +123,7 @@
 
             <a-form layout="vertial">
               <a-form-item>
-                <a-input v-model="selectedPost.thumbnail" placeholder="点击封面图选择图片，或者输入外部链接" ></a-input>
+                <a-input v-model="selectedPost.thumbnail" placeholder="点击封面图选择图片，或者输入外部链接"></a-input>
               </a-form-item>
             </a-form>
 
@@ -555,11 +555,9 @@ export default {
       }
     },
     handleDefaultPic() {
-        photoApi.defaultPic()
-        .then(response => {
-          this.$set(this.selectedPost,'thumbnail',response.data)
-        })
-
+      photoApi.defaultPic().then(response => {
+        this.$set(this.selectedPost, 'thumbnail', response.data)
+      })
     }
   }
 }
