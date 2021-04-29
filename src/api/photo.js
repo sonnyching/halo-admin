@@ -42,4 +42,11 @@ photoApi.listTeams = () => {
   })
 }
 
+photoApi.defaultPic = () => {
+    return service({
+        url: `${baseUrl}/random?v=` + Math.random(),
+        method: 'get'
+    })
+}
+
 export default photoApi

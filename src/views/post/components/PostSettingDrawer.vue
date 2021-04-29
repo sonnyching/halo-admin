@@ -123,11 +123,12 @@
 
             <a-form layout="vertial">
               <a-form-item>
-                <a-input v-model="selectedPost.thumbnail" placeholder="点击封面图选择图片，或者输入外部链接"></a-input>
+                <a-input v-model="selectedPost.thumbnail" placeholder="点击封面图选择图片，或者输入外部链接" ></a-input>
               </a-form-item>
             </a-form>
 
             <a-button class="post-thumb-remove" type="dashed" @click="selectedPost.thumbnail = null">移除</a-button>
+            <a-button class="post-thumb-auto-generate" type="primary" @click="handleDefaultPic">自动生成图片</a-button>
           </div>
         </div>
       </div>
@@ -253,6 +254,7 @@ import { mapGetters } from 'vuex'
 import categoryApi from '@/api/category'
 import postApi from '@/api/post'
 import themeApi from '@/api/theme'
+import photoApi from '@/api/photo'
 
 export default {
   name: 'PostSettingDrawer',
@@ -551,6 +553,13 @@ export default {
           this.$set(this.selectedPost, 'slug', result)
         }
       }
+    },
+    handleDefaultPic() {
+        photoApi.defaultPic()
+        .then(response => {
+          this.$set(this.selectedPost,'thumbnail',response.data)
+        })
+
     }
   }
 }
